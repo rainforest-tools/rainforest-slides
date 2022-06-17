@@ -27,3 +27,20 @@ layout: two-cols
   background-color: #6b6f73;
 }
 ```
+
+::right::
+
+```html {4-6}
+<button
+  class="
+    ...
+    bg-[#EEEFEE] text-[#414844]
+    hover:bg-[#6A766E] hover:text-[#FFFFFF] 
+    dark:bg-[#404448] dark:text-[#FFFFFF] dark:hover:bg-[#6B6F73]"
+>
+```
+
+- [Text](https://tailwindcss.com/docs/text-color)
+
+
+- [Background Color](https://tailwindcss.com/docs/background-color)

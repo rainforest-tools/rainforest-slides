@@ -1,5 +1,6 @@
 ---
 layout: two-cols
+class: first:pr-5 last:pl-5
 ---
 
 ```css {6-9}
@@ -27,3 +28,21 @@ layout: two-cols
   background-color: #6b6f73;
 }
 ```
+
+::right::
+
+## Layout
+
+### Flex
+
+```html {4} 
+<button
+  class="
+    py-2 px-3 text-sm rounded
+    flex items-center gap-1 
+    bg-[#EEEFEE] text-[#414844] 
+```
+
+<Flex className="w-full h-1/3" />
+
+### Grid

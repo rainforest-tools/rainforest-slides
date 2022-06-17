@@ -1,5 +1,6 @@
 ---
 layout: two-cols
+class: first:pr-5 last:pl-5
 ---
 
 ```css {0-5}
@@ -15,15 +16,45 @@ layout: two-cols
   background-color: #eeefee;
   color: #414844;
 }
-.wallet-btn:hover {
-  background-color: #6a766e;
-  color: #ffffff;
-}
-.dark .wallet-btn {
-  background-color: #404448;
-  color: #ffffff;
-}
-.dark .wallet-btn:hover {
-  background-color: #6b6f73;
-}
+...
+```
+
+- [Padding](https://tailwindcss.com/docs/padding)
+  - [Spacing](https://tailwindcss.com/docs/customizing-spacing#default-spacing-scale)
+  - 1rem=16px, 2=0.5rem=8px<span class="text-red-500">(2x4)</span>
+  
+```html {3,4}
+<button
+  class="
+    py-2
+    px-3
+    rounded
+    text-sm
+    ...
+```
+
+::right::
+
+- [Border Radius](https://tailwindcss.com/docs/border-radius)
+
+```html {5}
+<button
+  class="
+    py-2
+    px-3
+    rounded
+    text-sm
+    ...
+```
+
+- [Font Size](https://tailwindcss.com/docs/font-size)
+
+```html {6}
+<button
+  class="
+    py-2
+    px-3
+    rounded
+    text-sm
+    ...
 ```
