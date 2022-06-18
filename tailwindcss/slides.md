@@ -3,7 +3,7 @@
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: https://source.unsplash.com/collection/94734566/1920x1080
+background: /cover.png
 # apply any windi css classes to the current slide
 class: 'text-center'
 # https://sli.dev/custom/highlighters.html
@@ -16,6 +16,8 @@ info: |
   A utility-first CSS framework.
 
   Learn more at [Tailwind CSS](https://tailwindcss.com/)
+
+  Cover photo courtesy of Design Lead Ann
 # persist drawings in exports and build
 drawings:
   persist: false
@@ -139,8 +141,4 @@ src: ./slides/color.md
 
 ---
 src: ./slides/hover.md
----
-
----
-src: ./slides/dark.md
 ---

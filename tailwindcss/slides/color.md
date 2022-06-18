@@ -1,5 +1,6 @@
 ---
 layout: two-cols
+class: first:pr-5 last:pl-5 flex flex-col justify-between
 ---
 
 ```css {10-11}
@@ -44,3 +45,11 @@ layout: two-cols
 
 
 - [Background Color](https://tailwindcss.com/docs/background-color)
+
+- [Background Image](https://tailwindcss.com/docs/background-image)
+
+```html
+<div class="h-14 bg-gradient-to-r from-cyan-500 to-blue-500 rounded"></div>
+```
+
+<div class="h-14 bg-gradient-to-r from-cyan-500 to-blue-500 rounded"></div>
