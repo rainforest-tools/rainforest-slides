@@ -21,6 +21,7 @@ info: |
 # persist drawings in exports and build
 drawings:
   persist: false
+download: true
 ---
 
 # Tailwind CSS
@@ -72,7 +73,7 @@ layout: two-cols
     <WalletButton />
     <button class="wallet-btn">
       ExFcD7...B7fb
-      <img src="goby.png" />
+      <img src="/goby.png" />
     </button>
   </div>
 </div>
@@ -90,7 +91,7 @@ layout: two-cols
   "
 >
   ExFcD7...B7fb
-  <img src="goby.png" />
+  <img src="/goby.png" />
 </button>
 ```
 
@@ -105,7 +106,7 @@ layout: two-cols
     <WalletButton />
     <button class="wallet-btn">
       ExFcD7...B7fb
-      <img src="goby.png" />
+      <img src="/goby.png" />
     </button>
   </div>
 </div>
@@ -113,7 +114,7 @@ layout: two-cols
 ::right::
 
 ```html
-<button class="wallet-btn">ExFcD7...B7fb<img src="goby.png" /></button>
+<button class="wallet-btn">ExFcD7...B7fb<img src="/goby.png" /></button>
 ```
 ```css
 .wallet-btn {
