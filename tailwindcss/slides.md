@@ -48,6 +48,20 @@ The last comment block of each slide will be treated as slide notes. It will be 
 -->
 
 ---
+
+## [Utility First](https://tailwindcss.com/docs/utility-first)
+
+Building complex components from a constrained set of primitive utilities.
+
+- You aren’t wasting energy inventing class names.
+- Your CSS stops growing
+- Making changes feels safer.
+
+---
+
+## Pre or Post-processor
+
+---
 layout: two-cols
 ---
 
@@ -142,3 +156,38 @@ src: ./slides/color.md
 ---
 src: ./slides/hover.md
 ---
+
+---
+
+## [Adding Custom Styles](https://tailwindcss.com/docs/adding-custom-styles)
+
+### Arbitrary values
+
+---
+layout: two-cols
+---
+
+## Why is my CSS class not working?
+
+- Css always run from top to bottom it dosen't matter what is the order you have given to your classes.
+- Css looks if defined property is important or not
+
+### How tailwindcss handles css classes?
+
+- @layer
+  - base
+  - components
+  - utilities
+
+::right::
+
+
+
+---
+
+## Safelist
+
+---
+
+## Plugins
+
