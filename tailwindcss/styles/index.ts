@@ -1,1 +1,3 @@
-import './index.css'
+import './base.css'
+import './components.css'
+import './utilities.css'
