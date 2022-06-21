@@ -16,8 +16,6 @@ info: |
   A utility-first CSS framework.
 
   Learn more at [Tailwind CSS](https://tailwindcss.com/)
-
-  Cover photo courtesy of Design Lead Ann
 # persist drawings in exports and build
 drawings:
   persist: false
@@ -57,10 +55,6 @@ Building complex components from a constrained set of primitive utilities.
 - You aren’t wasting energy inventing class names.
 - Your CSS stops growing
 - Making changes feels safer.
-
----
-
-## Pre or Post-processor
 
 ---
 layout: two-cols
@@ -160,12 +154,68 @@ src: ./slides/hover.md
 
 ---
 
-## [Adding Custom Styles](https://tailwindcss.com/docs/adding-custom-styles)
+## Pre or Post-processor
 
-### Arbitrary values
+```mermaid
+  graph LR
+    Pre(Pre-processor scripts) --Pre-processor--> CSS(CSS)
+    CSS --Post-processor--> SuperCSS(More Powerful CSS)
+```
+
+- Pre-processor
+  - [<img src="https://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg" class="w-12 inline-block" />](https://sass-lang.com/), [<img src="https://stylus-lang.com/img/stylus-logo.svg" class="w-12 inline-block" />](https://stylus-lang.com/), [<img src="https://lesscss.org/public/img/less_logo.png" class="w-12 inline-block" />](https://lesscss.org/), [<img src="https://postcss.org/assets/postcss.83d93145.svg" class="w-12 inline-block" />](https://postcss.org/)
+  - Take a language that compiles to CSS
+
+<div class="flex-center gap-10">
+
+```scss
+$font-stack: Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+```
+
+→
+
+```css
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #333;
+}
+```
+
+</div>
+
+- Post-processor
+  - [<img src="https://postcss.org/assets/postcss.83d93145.svg" class="w-12 inline-block" />](https://postcss.org/)
+  - Align and refurbish CSS to have the best possible outcome for today’s browsers.
+
+> [Deconfusing Pre- and Post-processing](https://medium.com/@ddprrt/deconfusing-pre-and-post-processing-d68e3bd078a3)
 
 ---
-layout: two-cols
+
+## [Reusing Styles](https://tailwindcss.com/docs/reusing-styles)
+
+- Extracting components and partials
+- Extracting classes with @apply
+
+### Avoiding premature abstraction
+
+- You have to think up class names all the time
+- You have to jump between multiple files to make changes
+- Changing styles is scarier
+- Your CSS bundle will be bigger
+
+---
+src: ./slides/custom-styles.md
+---
+
+---
+layout: iframe-right
+url: https://play.tailwindcss.com/KZwO9gU4RW?layout=preview
 ---
 
 ## Why is my CSS class not working?
@@ -186,9 +236,38 @@ layout: two-cols
 
 ---
 
-## Safelist
+## [Safelist](https://tailwindcss.com/docs/content-configuration#safelisting-classes)
+
+`tailwind.config.js`
+
+```js
+module.exports = {
+  ...,
+  safelist: [
+    'text-2xl',
+    'text-3xl',
+    {
+      pattern: /bg-(red|green|blue)-(100|200|300)/,
+      variants: ['lg', 'hover', 'focus', 'lg:hover'],
+    },
+  ]
+}
+```
+
+- Don't construct class names dynamically
+
+```html
+<div class="text-{{ error ? 'red' : 'green' }}-600"></div>
+```
+
+- Always use complete class names
+
+```html
+<div class="{{ error ? 'text-red-600' : 'text-green-600' }}"></div>
+```
 
 ---
+src: ./slides/plugins.md
+---
 
-## Plugins
 
