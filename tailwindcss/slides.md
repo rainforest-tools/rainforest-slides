@@ -52,9 +52,15 @@ The last comment block of each slide will be treated as slide notes. It will be 
 
 Building complex components from a constrained set of primitive utilities.
 
+### Props:
 - You aren’t wasting energy inventing class names.
 - Your CSS stops growing
 - Making changes feels safer.
+
+### Cons:
+- Long classNames
+- Lack of Components
+- You need a strong understanding of CSS
 
 ---
 layout: two-cols
@@ -196,18 +202,35 @@ body {
 > [Deconfusing Pre- and Post-processing](https://medium.com/@ddprrt/deconfusing-pre-and-post-processing-d68e3bd078a3)
 
 ---
+layout: iframe-right
+url: https://tailwindcss.com/docs/reusing-styles#extracting-components-and-partials
+---
 
 ## [Reusing Styles](https://tailwindcss.com/docs/reusing-styles)
 
 - Extracting components and partials
+  - css component or js component
 - Extracting classes with @apply
 
-### Avoiding premature abstraction
+<div class=" items-center">
 
-- You have to think up class names all the time
-- You have to jump between multiple files to make changes
-- Changing styles is scarier
-- Your CSS bundle will be bigger
+```html
+<button
+  class="
+    py-2 px-3 text-sm rounded
+    flex items-center gap-1 
+    bg-[#EEEFEE] text-[#414844] 
+```
+
+→
+
+```css
+.btn {
+  @apply py-2 px-3 text-sm rounded flex items-center gap-1 bg-[#EEEFEE] text-[#414844];
+}
+```
+
+</div>
 
 ---
 src: ./slides/custom-styles.md
@@ -229,10 +252,6 @@ url: https://play.tailwindcss.com/KZwO9gU4RW?layout=preview
   - base
   - components
   - utilities
-
-::right::
-
-
 
 ---
 
