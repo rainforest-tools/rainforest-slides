@@ -36,16 +36,14 @@ A utility-first CSS framework
   <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
     <carbon:edit />
   </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub"
-    class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon-logo-github />
-  </a>
 </div>
 
 <!--
 The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
 -->
 
+---
+layout: two-cols
 ---
 
 ## [Utility First](https://tailwindcss.com/docs/utility-first)
@@ -61,6 +59,32 @@ Building complex components from a constrained set of primitive utilities.
 - Long classNames
 - Lack of Components
 - You need a strong understanding of CSS
+
+::right::
+
+<div class="flex flex-col">
+  <img src="/modal.png" class="h-50 w-min self-center" />
+
+  ```html
+  <div class="rounded-lg card bg-base-100 shadow-modal fixed -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2 w-modal">
+    <div class="gap-0 p-0 overflow-hidden card-body">
+      <button class="absolute top-[18px] right-[20px]">
+        <span class="text-xl leading-none material-icons-outlined">close</span>
+      </button>
+      <div class="card-title py-[18px] min-h-14 px-5 font-medium text-sm capitalize">Wallet</div>
+      <div class="divider"></div>
+      <div class="flex flex-col px-5 overflow-hidden">
+        <div class="pt-4 pb-10"><div class="justify-between w-full p-4 outline-box flex-row-center">
+          <div class="flex flex-col">
+            <span class="text-xs text-neutral-300">Connected</span>
+            <div class="gap-2 mt-1 mb-4 font-medium flex-row-center">
+              <span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"><span style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;">
+                <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2728%27%20height=%2728%27/%3e" style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"></span><img alt="Goby" src="/images/icons/goby.svg" decoding="async" data-nimg="intrinsic" class="w-7" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;">
+              </span>
+              <span>xch1k...qnrt</span>
+              ...
+  ```
+</div>
 
 ---
 layout: two-cols
