@@ -1,9 +1,6 @@
 ---
 # try also 'default' to start simple
 theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://source.unsplash.com/collection/94734566/1920x1080
 # apply any windi css classes to the current slide
 class: 'text-center flex flex-col items-start last:items-center justify-center'
 # https://sli.dev/custom/highlighters.html
@@ -23,7 +20,17 @@ layout: two-cols
 
 # HTML, CSS, and JavaScript
 
-Rainforest
+<div class='flex items-center gap-10 mt-10'>
+<img src='/profile.jpg' alt='profile' class='w-25 h-25 rounded-full object-cover object-top ring-5 ring-offset-5 ring-cyan-400' />
+
+<div class='flex flex-col text-left'>
+
+### Rainforest
+Frontend Lead @ Hashgreen
+
+</div>
+
+</div>
 
 ::right::
 
