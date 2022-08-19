@@ -39,17 +39,17 @@ layout: two-cols
     border: 10px solid blue;
   }
   ```
-
-::right::
-
-<img id='root' class='w-[100px] h-[100px] rounded-[50px] border-[10px] border-blue-500 p-2.5 hover:cursor-pointer' src='/ha.png' />
-
 - 屬性選擇器
   ```css
   [src] {
     padding: 10px;
   }
   ```
+
+::right::
+
+<img id='root' class='w-[100px] h-[100px] rounded-[50px] border-[10px] border-blue-500 p-2.5 hover:cursor-pointer' src='/ha.png' />
+
 - 虛擬 class 選擇器（Pseudo-class selector）
   ```css
   img:hover {
@@ -57,7 +57,56 @@ layout: two-cols
   }
   ```
 
+- [虛擬 elements 選擇器（Pseudo-elements selector）](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
+  ```css
+  p::first-line {
+    color: blue;
+  }
+  ```
+
+<p class='first-line:text-blue-500'>
+paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph
+</p>
+
+---
+layout: two-cols
+---
+
+### Selector(Cont.)
+
+- Grouping selectors
+```css
+p, #root, .class1, [src] {
+  padding: 0;
+}
+```
+- Combinators
+  - Descendant: " "
+  ```css
+  p span {
+    color: red;
+  }
+  ```
+  - Child: ">"
+  ```css
+  p > span {
+    color: red;
+  }
+  ```
+  - ...
+
+
 > [Further Reading](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)
+
+::right::
+
+<p class='descendant'>
+paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph <span>span <span>subspan</span></span>
+</p>
+
+<p class='child'>
+paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph paragraph <span>span <span>subspan</span></span>
+</p>
 
 ---
 

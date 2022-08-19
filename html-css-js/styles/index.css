@@ -1,0 +1,10 @@
+p span  {
+    color: green;
+}
+p.descendant span {
+    color: red;
+}
+
+p.child > span {
+    color: red;
+}
