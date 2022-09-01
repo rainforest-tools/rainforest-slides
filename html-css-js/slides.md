@@ -82,3 +82,5 @@ url: https://js-x9drwh.stackblitz.io
 <div class='w-full h-full flex items-center justify-center'>
   <a href='https://stackblitz.com/edit/js-x9drwh?file=index.js' class='text-6xl' target='_blank'>Demo</a>
 </div>
+
+[In-class Demo](https://stackblitz.com/edit/js-1ryym5?file=index.js)
