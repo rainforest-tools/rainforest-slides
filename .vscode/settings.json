@@ -1,6 +1,7 @@
 {
     "conventionalCommits.scopes": [
         "tailwindcss",
-        "html-css-js"
+        "html-css-js",
+        "fastapi"
     ]
 }
