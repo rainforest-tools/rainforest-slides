@@ -134,16 +134,125 @@ npx create-react-app [PROJECT_NAME] --template typescript
 - JavaScript
 
 ```bash
-npm create vite@latest [PROJECT_NAME] --template react
+npm create vite@latest [PROJECT_NAME] -- --template react
 ```
 
 - TypeScript
 
 ```bash
-npm create vite@latest [PROJECT_NAME] --template react-ts
+npm create vite@latest [PROJECT_NAME] -- --template react-ts
 ```
 
 > [Vite 3.0 vs. Create React App: Comparison and migration guide](https://blog.logrocket.com/vite-3-vs-create-react-app-comparison-migration-guide/)
+
+---
+layout: two-cols
+---
+
+## Create Project
+
+```bash
+npm create vite@latest react-todolist -- --template react-ts
+cd react-todolist
+npm install
+npm run dev
+```
+
+- `npm install` to install dependencies
+- file structure
+
+  ```
+  - react-todolist
+    |- public/
+    |- src/
+    |- index.html
+    |- vite.config.ts 
+
+  ```
+
+::right::
+
+- available scripts in `package.json`
+  - `npm run dev` to run dev server
+  - `npm run build` to build for productive usage
+  - `npm run dev` to preview project in production environments
+  ```json
+  {
+    ...
+    "scripts": {
+      "dev": "vite",
+      "build": "tsc && vite build",
+      "preview": "vite preview"
+    },
+  }
+  ```
+
+---
+layout: two-cols
+---
+
+## Setup [React Router](https://reactrouter.com/en/main)
+- install dependency
+
+```bash
+npm install react-router-dom
+```
+
+> if you are interested in react router, you could follow up [official tutorial](https://reactrouter.com/en/main/start/tutorial)
+
+::right::
+
+- create `src/pages/index.tsx` as home page
+
+```tsx
+const Home = () => { return <>Home</> }
+export default Home
+```
+
+- create `src/pages/detail.tsx` as detail page
+
+```tsx
+const Detail = () => { return <>Detail</> }
+export default Detail
+```
+
+- setup router and routes in `src/App.tsx`, you'll see Home text on your browser
+
+```tsx
+<BrowserRouter>
+  <Routes>
+    <Route index element={<Home />} />
+  </Routes>
+</BrowserRouter>
+```
+
+---
+layout: two-cols
+---
+
+### Setup Route for Detail Page
+
+- retrieve params defined with route path `:id` via [useParams](https://reactrouter.com/en/main/hooks/use-params) hook provided by react router 
+
+```tsx
+// src/App.tsx
+<BrowserRouter>
+  <Routes>
+    <Route index element={<Home />} />
+    <Route path="todo/:id" element={<Detail />} />
+  </Routes>
+</BrowserRouter>
+```
+```tsx
+const Detail = () => {
+  const { id } = useParams()
+  return <>Detail page for todo: {id}</>
+}
+```
+
+::right::
+
+![](/useParams.png)
 
 ---
 layout: two-cols
@@ -278,10 +387,6 @@ export const rootContext = createContext<IRootContext>({
   todos: [],
 });
 ```
-
----
-
-## [React Router](https://reactrouter.com/en/main)
 
 ---
 
