@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "tailwindcss",
         "html-css-js",
-        "fastapi"
+        "fastapi",
+        "react"
     ]
 }

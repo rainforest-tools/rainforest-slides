@@ -12,15 +12,15 @@ highlighter: shiki
 lineNumbers: false
 # some information about the slides, markdown enabled
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
+  ## React
+  A JavaScript library for building user interfaces
 
-  Learn more at [Sli.dev](https://sli.dev)
+  Learn more at [React](https://reactjs.org)
 # persist drawings in exports and build
 drawings:
   persist: false
 # use UnoCSS (experimental)
-css: unocss
+# css: unocss
 ---
 
 # React.js
@@ -32,18 +32,24 @@ layout: two-cols
 ## Outline
 
 - Virtual DOM
+- - CSR v.s. SSR
+- Demo
+- Getting Started
+  - [Create React App](https://create-react-app.dev/)
+  - [Vite](https://vitejs.dev/)
+  - [CDN](https://reactjs.org/docs/cdn-links.html)
 - React Hooks
   - useState
   - useEffect
   - useMemo, useCallback
   - custom hooks
+
+::right::
+
 - state management
   - Context API
   - Mobx
   - Redux
-
-::right::
-
 - React Router
 - UI Library
   - BootStrap
@@ -81,8 +87,17 @@ class: flex flex-col items-center
 
 ---
 
-- React.js -> Next.js
-- Vue.js -> Nuxt.js
+- CSR(Client-Side Rendering)
+  - 由Server端回傳資料，再由前端利用 Javascript 產生 HTML。在執行期間「動態」去跟後端Server拿資料，再動態產生看到的那些元素。
+- SSR(Server-Side Rendering)
+  - 由Server端的 CPU 收到請求後，解析完整的 HTML 返回到使用者接收端，然後呈現網頁。
+
+| CSR                              | SSR                            |
+| -------------------------------- | ------------------------------ |
+| [React.js](https://reactjs.org/) | [Next.js](https://nextjs.org/) |
+| [Vue.js](http://vuejs.org/)      | [Nuxt.js](https://nuxtjs.org/) |
+
+> [CSR與SSR概述比較](https://hackmd.io/@spyua/HJDJUaTSO)
 
 ---
 layout: iframe-right
@@ -92,6 +107,43 @@ url: https://react-ts-pyvqz2.stackblitz.io
 <div class='w-full h-full flex items-center justify-center'>
   <a href='https://stackblitz.com/edit/react-ts-pyvqz2?file=App.tsx' class='text-6xl' target='_blank'>Demo</a>
 </div>
+
+---
+layout: two-cols
+class: first:mr-5 last:ml-5
+---
+
+## CRA, Create React App
+
+- JavaScript
+
+```bash
+npx create-react-app [PROJECT_NAME]
+```
+
+- TypeScript
+
+```bash
+npx create-react-app [PROJECT_NAME] --template typescript
+```
+
+::right::
+
+## Vite
+
+- JavaScript
+
+```bash
+npm create vite@latest [PROJECT_NAME] --template react
+```
+
+- TypeScript
+
+```bash
+npm create vite@latest [PROJECT_NAME] --template react-ts
+```
+
+> [Vite 3.0 vs. Create React App: Comparison and migration guide](https://blog.logrocket.com/vite-3-vs-create-react-app-comparison-migration-guide/)
 
 ---
 layout: two-cols
