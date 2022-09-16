@@ -258,6 +258,295 @@ const Detail = () => {
 layout: two-cols
 ---
 
+## Setup home page
+
+```tsx
+const Home = () => {
+  const [todos, setTodos] = useState<ITodo[]>([]);
+  return <div>
+      <h1>Todo List</h1>
+      <div className="todolist-input">
+        <input
+          type="text"
+          placeholder="input text..."
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <button onClick={addTodo}>+</button>
+      </div>
+      <textarea
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      ></textarea>
+      <ul>
+      // put todo items here
+      </ul>
+    </div>
+}
+```
+
+::right::
+
+```tsx
+{todos?.map((todo) => (
+  <li key={todo.title} className="todolist-item">
+    <input
+      type="checkbox"
+      checked={todo.done}
+      onChange={(e) => toggleDone(todo, e.target.checked)}
+    />
+    {todo.title}
+    <button onClick={() => removeTodo(todo)}>x</button>
+  </li>
+))}
+```
+- 用 map function 將 todo items 變成 jsx elements，因為是 array 所以記得要加 key 讓 react 追蹤元件是否需要重新渲染
+
+---
+layout: two-cols
+---
+
+### Create Component
+新增檔案 `src/components/TodoItem.tsx`
+```tsx
+const TodoItem = ({ checked, title, onChecked, onDelete }: IProps) => {
+  return (
+    <li className="todolist-item">
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => onChecked(e.target.checked)}
+      />
+      {title}
+      <button onClick={onDelete}>x</button>
+    </li>
+  );
+};
+
+export default TodoItem;
+
+```
+
+::right::
+
+其中 checked, title, onChecked, onDelete 為 component 的 props，可從上層傳入用於 component 渲染
+
+```tsx
+// src/pages/index.tsx
+<ul>
+  {todos?.map((todo) => (
+    <TodoItem
+      key={todo.title}
+      title={todo.title}
+      checked={todo.done}
+      onChecked={(checked) => toggleDone(todo, checked)}
+      onDelete={() => removeTodo(todo)}
+    />
+  ))}
+</ul>
+```
+
+---
+layout: two-cols
+---
+
+### Create todo item
+
+```tsx
+const [title, setTitle] = useState('');
+const [description, setDescription] = useState('');
+
+const addTodo = useCallback(() => {
+  const data = [...todos, { title, description, done: false }];
+  setTodos(data);
+  save(data);
+  setTitle('');
+  setDescription('');
+}, [todos, title, description, save]);
+```
+```tsx
+<div className="todolist-input">
+  <input
+    type="text"
+    placeholder="input text..."
+    value={title}
+    onChange={(e) => setTitle(e.target.value)}
+  />
+  <button onClick={addTodo}>+</button>
+</div>
+<textarea
+  value={description}
+  onChange={(e) => setDescription(e.target.value)}
+></textarea>
+```
+
+::right::
+
+- 關於 react 如何處理表單可以看[這篇文章](https://www.w3schools.com/react/react_forms.asp)
+- 簡單來說就是在 html 中加入 js variables 作為 elements 的參數，如此處的 value, onChange, onCLick
+- value 決定欄位的值，當值改變會觸發 onChange 事件，可以在事件的 callback 中更新 value(setValue)，藉此達成 virtual DOM, real DOM 狀態一致性。
+- onClick, onKeyDown, ... 也是一些 elements 中常見的事件
+
+---
+layout: two-cols
+---
+
+```tsx
+const removeTodo = useCallback(
+  (item: ITodo) => {
+    const data = [...todos.filter((todo) => todo.title !== item.title)];
+    setTodos(data);
+    save(data);
+  },
+  [todos, save]
+);
+
+const toggleDone = useCallback(
+  (todo: ITodo, checked: boolean) => {
+    const data = [
+      ...todos.map((item) =>
+        item.title === todo.title ? { ...item, done: checked } : item
+      ),
+    ];
+    setTodos(data);
+    save(data);
+  },
+  [todos, save]
+);
+```
+
+::right::
+
+- 其餘創建 removeTodo, toggleDone 方法也同理綁定到 jsx elements 中
+
+```tsx
+<li key={todo.title} className="todolist-item">
+  <input
+    type="checkbox"
+    checked={todo.done}
+    onChange={(e) => toggleDone(todo, e.target.checked)}
+  />
+  {todo.title}
+  <button onClick={() => removeTodo(todo)}>x</button>
+</li>
+```
+
+---
+layout: two-cols
+---
+
+## use [local storage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) to persist todo items
+
+- retrieve todo items from local storage and set to todos state
+```ts
+useEffect(() => {
+  const data = localStorage.getItem('todos');
+  if (data) {
+    setTodos(JSON.parse(data));
+  }
+}, []);
+```
+
+- save changes to local storage
+
+```ts
+const save = useCallback(
+  (todos: ITodo[]) => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  },
+  [todos]
+);
+```
+
+::right::
+
+### via packages, like [react-use](https://github.com/streamich/react-use/blob/master/docs/useLocalStorage.md), [usehooks-ts](https://usehooks-ts.com/react-hook/use-local-storage)
+
+- remove save function and modify addTodo, removeTodo, toggleDone functions
+
+```ts
+const [todos, setTodos] = useLocalStorage<ITodo[]>('todos', []);
+const addTodo = useCallback(() => {
+  const data = [...todos ?? [], { title, description, done: false }];
+  setTodos(data);
+  setTitle('');
+  setDescription('');
+}, [todos, title, description]);
+const removeTodo = useCallback(
+  (item: ITodo) => {
+    const data = [...(todos ?? []).filter((todo) => todo.title !== item.title)];
+    setTodos(data);
+  },
+  [todos]
+);
+const toggleDone = useCallback(
+  (todo: ITodo, checked: boolean) => {
+    const data = [
+      ...(todos??[]).map((item) =>
+        item.title === todo.title ? { ...item, done: checked } : item
+      ),
+    ];
+    setTodos(data);
+  },
+  [todos]
+);
+```
+
+---
+layout: two-cols
+---
+
+## State Management
+先前 useState 所定義的 state 只存在於特定 component 中，在某些狀況下想共用 state 就會變得很麻煩：
+- 水平共用
+  - 可透過將 state 移到上層再將 state 作為 components 的 props 向下傳遞解決
+- 多層 props 傳遞
+```tsx
+function App() {
+  const [todos, setTodos] = useLocalStorage<ITodo[]>('todos', []);
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Home todos={todos} setTodos={setTodos} />} />
+        <Route path="todo/:id" element={<Detail todos={todos} />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}
+```
+
+::right::
+
+但當要傳遞的 props 一多，程式碼便會變得不好維護，此時就需要借助額外的套件來管理 state。這邊要介紹的是 react 所提供的 [context API](https://reactjs.org/docs/hooks-reference.html#usecontext)
+
+```tsx
+// store/index.tsx
+export const RootContext = createContext<IRootContext>({
+  todos: [],
+});
+
+export const RootProvider = ({ children }: PropsWithChildren) => {
+  const [todos, setTodos] = useLocalStorage<ITodo[]>('todos', []);
+  return (
+    <RootContext.Provider value={{ todos: todos ?? [], setTodos }}>
+      {children}
+    </RootContext.Provider>
+  );
+};
+```
+```tsx
+// src/App.tsx
+// provider todos state into pages
+<RootProvider>...</RootProvider>
+// src/pages/index.tsx
+// retrieve todos state from RootContext
+const { todos, setTodos } = useContext(RootContext);
+```
+
+---
+layout: two-cols
+---
+
 ## [React Hooks](https://reactjs.org/docs/hooks-reference.html)
 
 - 只能在 React Function 中呼叫 Hook
